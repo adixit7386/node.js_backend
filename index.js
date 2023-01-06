@@ -17,7 +17,9 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB connected successfully..."))
   .catch((err) => console.log(err));
-
+app.get("/", (req, res) => {
+  res.send("app working fine");
+});
 app.use("/api/users", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
