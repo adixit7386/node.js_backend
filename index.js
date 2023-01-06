@@ -13,12 +13,16 @@ app.use(cors());
 app.use(express.json());
 dotenv.config();
 mongoose.set("strictQuery", true);
+let message = "";
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("DB connected successfully..."))
+  .then(() => {
+    message = "mongodb connected";
+    console.log("DB connected successfully...");
+  })
   .catch((err) => console.log(err));
 app.get("/", (req, res) => {
-  res.send("app working fine");
+  res.send(message);
 });
 app.use("/api/users", userRouter);
 app.use("/api/cart", cartRouter);
